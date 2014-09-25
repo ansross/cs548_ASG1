@@ -20,8 +20,9 @@ k_mer::~k_mer(void)
 {
 }
 
-void k_mer::add_adjacent(char adj_arg){
+void k_mer::add_adjacent(char adj_arg, int lineNum){
 	int index = 0;
+	bool valid = true;
 	switch (adj_arg)
 	{
 	case 'A':
@@ -40,9 +41,15 @@ void k_mer::add_adjacent(char adj_arg){
 		index = k_mer::N;
 		break;
 	default:
-		std::cout<<"ERROR!!! Invalid base "<<adj_arg<<std::endl;
+		std::ofstream ss;
+		ss.open("err.txt", std::ios::out | std::ios::app );
+		ss<<"ERROR!!! Invalid base "<<adj_arg<<" from "<<lineNum<<std::endl;
+		valid = false;
+		ss.close();
 	}
-	adjacent_kmer_end[index] = true;
+	if(valid){
+		adjacent_kmer_end[index] = true;
+	}
 }
 
 
@@ -50,6 +57,7 @@ std::vector<std::string> k_mer::get_adj(){
 	std::vector<std::string> adj_kmers;
 	for(int i=0; i<5; ++i)
 	{
+		bool valid = true;
 		if(adjacent_kmer_end[i]){
 			char base;
 			switch(i){
@@ -71,9 +79,14 @@ std::vector<std::string> k_mer::get_adj(){
 			default:
 				base='!';
 				std::cout<<"ERROR!!!! Invalid base: "<<i<<std::endl;
+				valid=false;
+				break;
 			}
-			adj_kmers.push_back(k_mer_string.substr(1, k_mer_string.length()-1) + base);
+			if(valid){
+				adj_kmers.push_back(k_mer_string.substr(1, k_mer_string.length()-1) + base);
+			}
 		}
+
 	}
 	return adj_kmers;
 }

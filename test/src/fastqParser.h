@@ -13,7 +13,7 @@
 class fastqParser{
 	public:
 	static void parseFastq(const std::string &filename, kmers &data_struct, const int k);
-	static void parseLine(std::string line, kmers &data_struct, const int k);
+	static void parseLine(std::string line, kmers &data_struct, const int k, int lineNum);
 };
 
 #endif /* FASTAPARSER_H_ */

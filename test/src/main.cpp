@@ -32,6 +32,8 @@ int main(int argcv, char* argv[]){
 		outfile.open(outfile_name);
 		std::cout<<"printing all k-1-mers in lexographical order in "<<outfile_name<<'\n'<<"k = "<<k<<std::endl;
 		outfile<<"printing all k-1-mers in lexographical order"<<'\n'<<"k = "<<k<<std::endl;
+		
+		outfile<<"num k-1-mers: "<<ordered_kmers.size()<<std::endl;
 		for(iter= ordered_kmers.begin(); iter != ordered_kmers.end(); ++iter)
 		{
 			outfile << *iter << std::endl;	
@@ -42,7 +44,7 @@ int main(int argcv, char* argv[]){
 		return 0;
 	}
 	else{
-		std::cout << "usage: <jarfilename> -k <k> -r1 <fq file 1 name> -r2 <fq file 2 name>";
+		std::cout << "usage: <exe_name> -k <k> -r1 <fq file 1 name> -r2 <fq file 2 name>"<<std::endl;
 	}
 }
 

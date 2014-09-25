@@ -9,8 +9,10 @@
 #define K_MER_STRUCT_H_
 #include<string>
 #include<vector>
-
-
+#include<sstream>
+#include <ios>
+#include <iostream>
+#include<fstream>
 class k_mer{
 	private:
 		std::string k_mer_string;
@@ -20,7 +22,7 @@ class k_mer{
 	k_mer(void);
 	k_mer(const std::string k_mer_arg);
 	~k_mer(void);
-	void add_adjacent(char adj_arg);
+	void add_adjacent(char adj_arg, int lineNum);
 	std::vector<std::string> get_adj();
 	std::string get_k_mer();
 

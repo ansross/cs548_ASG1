@@ -22,7 +22,7 @@ public:
 	~kmers(void);
 	void add_kmer(std::string kmer_arg);
 	std::set<std::string> get_all_kmers_ordered(void);
-	void add_adjacent(std::string kmer, char kmer_adj);
+	void add_adjacent(std::string kmer, char kmer_adj, int lineNum);
 	void print_all_kmers_with_adj(std::string outfile_name);
 };
 

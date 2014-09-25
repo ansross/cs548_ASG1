@@ -44,8 +44,8 @@ void kmers::print_all_kmers_with_adj(std::string outfile_name)
 	outfile.close();
 }
 
-void kmers::add_adjacent(std::string kmer, char kmer_adj){
-	all_kmers[kmer].add_adjacent(kmer_adj);
+void kmers::add_adjacent(std::string kmer, char kmer_adj, int lineNum){
+	all_kmers[kmer].add_adjacent(kmer_adj, lineNum);
 }
 
 
