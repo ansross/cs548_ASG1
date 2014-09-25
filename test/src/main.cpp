@@ -30,7 +30,7 @@ int main(int argcv, char* argv[]){
 		std::string outfile_name = "k_minus_one_mers.txt";
 		std::ofstream outfile;
 		outfile.open(outfile_name);
-		std::cout<<"printing all k-1-mers in lexographical order"<<'\n'<<"k = "<<k<<std::endl;
+		std::cout<<"printing all k-1-mers in lexographical order in "<<outfile_name<<'\n'<<"k = "<<k<<std::endl;
 		outfile<<"printing all k-1-mers in lexographical order"<<'\n'<<"k = "<<k<<std::endl;
 		for(iter= ordered_kmers.begin(); iter != ordered_kmers.end(); ++iter)
 		{
