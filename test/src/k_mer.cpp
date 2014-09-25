@@ -3,11 +3,16 @@
 #include <iostream>
 //using namespace std;
 
-k_mer::k_mer(void){
-
+k_mer::k_mer(void)  {
+	for(int i=0; i<5; ++i){
+		adjacent_kmer_end[i] = false;
+	}
 }
 
 k_mer::k_mer(const std::string k_mer_arg): k_mer_string(k_mer_arg) {
+	for(int i=0; i<5; ++i){
+		adjacent_kmer_end[i] = false;
+	}
 
 }
 
@@ -16,14 +21,61 @@ k_mer::~k_mer(void)
 }
 
 void k_mer::add_adjacent(char adj_arg){
-	std::cout<<"check 1"<<std::endl;
-	adjacent_kmer_end[adj_arg] = true;
-	std::cout<<"check 2"<<std::endl;
+	int index = 0;
+	switch (adj_arg)
+	{
+	case 'A':
+		index = k_mer::A;
+		break;
+	case 'C':
+		index = k_mer::C;
+		break;
+	case 'G':
+		index = k_mer::G;
+		break;
+	case 'T':
+		index = k_mer::T;
+		break;
+	case 'N':
+		index = k_mer::N;
+		break;
+	default:
+		std::cout<<"ERROR!!! Invalid base "<<adj_arg<<std::endl;
+	}
+	adjacent_kmer_end[index] = true;
 }
 
 
-bool* k_mer::get_adj(){
-	return adjacent_kmer_end;
+std::vector<std::string> k_mer::get_adj(){
+	std::vector<std::string> adj_kmers;
+	for(int i=0; i<5; ++i)
+	{
+		if(adjacent_kmer_end[i]){
+			char base;
+			switch(i){
+			case k_mer::A:
+				base = 'A';
+				break;
+			case k_mer::C:
+				base = 'C';
+				break;
+			case k_mer::G:
+				base='G';
+				break;
+			case k_mer::T:
+				base = 'T';
+				break;
+			case k_mer::N:
+				base = 'N';
+				break;
+			default:
+				base='!';
+				std::cout<<"ERROR!!!! Invalid base: "<<i<<std::endl;
+			}
+			adj_kmers.push_back(k_mer_string.substr(1, k_mer_string.length()-1) + base);
+		}
+	}
+	return adj_kmers;
 }
 
 std::string k_mer::get_k_mer(){
