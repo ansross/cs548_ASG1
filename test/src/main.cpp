@@ -14,6 +14,7 @@
 
 int main(int argcv, char* argv[]){
 	if(argcv == 7){
+		// parse arguments
 		std::istringstream ss(argv[2]);
 		int k;
 		ss >> k;
@@ -25,21 +26,23 @@ int main(int argcv, char* argv[]){
 		fastqParser::parseFastq(fastq1, all_kmers, k);
 		std::cout<<"parsing second file "<<fastq2<<std::endl;
 		fastqParser::parseFastq(fastq2, all_kmers, k);
-		std::set<std::string> ordered_kmers = all_kmers.get_all_kmers_ordered();
-		std::set<std::string>::iterator iter;
-		std::string outfile_name = "k_minus_one_mers.txt";
+		std::cout<<"num_k_minus_one_mers: "<<all_kmers.get_size()<<std::endl;
+		std::string outfile_name = std::to_string(k)+"_minus_one_mers.txt";
 		std::ofstream outfile;
 		outfile.open(outfile_name);
+		outfile<<"num k-1-mers: "<<all_kmers.get_size()<<std::endl;
+		std::cout<<"getting all ordered kmers"<<std::endl;
+		std::set<std::string> ordered_kmers = all_kmers.get_all_kmers_ordered();
+		std::set<std::string>::iterator iter;
 		std::cout<<"printing all k-1-mers in lexographical order in "<<outfile_name<<'\n'<<"k = "<<k<<std::endl;
 		outfile<<"printing all k-1-mers in lexographical order"<<'\n'<<"k = "<<k<<std::endl;
 		
-		outfile<<"num k-1-mers: "<<ordered_kmers.size()<<std::endl;
 		for(iter= ordered_kmers.begin(); iter != ordered_kmers.end(); ++iter)
 		{
 			outfile << *iter << std::endl;	
 		}
 		outfile.close();
-		all_kmers.print_all_kmers_with_adj("k_minus_one_mers_w_adjs.txt");
+		//all_kmers.print_all_kmers_with_adj("k_minus_one_mers_w_adjs.txt");
 
 		return 0;
 	}

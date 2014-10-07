@@ -20,6 +20,8 @@ k_mer::~k_mer(void)
 {
 }
 
+// mark true in the array corresponding to the last base of 
+// the adjacent k-1-mer
 void k_mer::add_adjacent(char adj_arg, int lineNum){
 	int index = 0;
 	bool valid = true;
@@ -52,7 +54,9 @@ void k_mer::add_adjacent(char adj_arg, int lineNum){
 	}
 }
 
-
+// return a set of strings based on the 
+// ending base of the adjacent (k-1)-mers 
+// and the overlapping portion of the current (k-1)-mer
 std::vector<std::string> k_mer::get_adj(){
 	std::vector<std::string> adj_kmers;
 	for(int i=0; i<5; ++i)
@@ -82,6 +86,8 @@ std::vector<std::string> k_mer::get_adj(){
 				valid=false;
 				break;
 			}
+			// an overlap of k_minus_one_mer[1:end] between the k-1-mer 
+			// and its adjacent mers. 
 			if(valid){
 				adj_kmers.push_back(k_mer_string.substr(1, k_mer_string.length()-1) + base);
 			}

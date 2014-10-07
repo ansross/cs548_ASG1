@@ -14,6 +14,8 @@ void kmers::add_kmer(std::string kmer_string_arg){
 	all_kmers.insert(temp);
 }
 
+//since the unorded_map that the k_minus_one_mers is not sorted
+//enter them into a set to get the k-1-mers lexically ordered to print 
 std::set<std::string> kmers::get_all_kmers_ordered(void)
 {
 	std::set<std::string> sorted_kmers = std::set<std::string>();
@@ -44,9 +46,13 @@ void kmers::print_all_kmers_with_adj(std::string outfile_name)
 	outfile.close();
 }
 
+//find relevant k-1-mer and add the adjacent k-1-mer 
 void kmers::add_adjacent(std::string kmer, char kmer_adj, int lineNum){
 	all_kmers[kmer].add_adjacent(kmer_adj, lineNum);
 }
 
+int kmers::get_size(){
+	return all_kmers.size();
+}
 
 
