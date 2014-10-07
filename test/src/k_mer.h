@@ -16,6 +16,7 @@
 class k_mer{
 	private:
 		std::string k_mer_string;
+		int vertex_weight;
 		enum bases {A=0, C=1, T=2, G=3, N=4};
 		bool adjacent_kmer_end [5];
 	public:
@@ -25,6 +26,8 @@ class k_mer{
 	void add_adjacent(char adj_arg, int lineNum);
 	std::vector<std::string> get_adj();
 	std::string get_k_mer();
+	const int get_weight();
+	void increment_weight(int increment_by);
 
 };
 

@@ -3,13 +3,14 @@
 #include <iostream>
 //using namespace std;
 
-k_mer::k_mer(void)  {
+//default weight=0 since will be incremented after insertion 
+k_mer::k_mer(void): vertex_weight(0)  {
 	for(int i=0; i<5; ++i){
 		adjacent_kmer_end[i] = false;
 	}
 }
 
-k_mer::k_mer(const std::string k_mer_arg): k_mer_string(k_mer_arg) {
+k_mer::k_mer(const std::string k_mer_arg): k_mer_string(k_mer_arg), vertex_weight(0) {
 	for(int i=0; i<5; ++i){
 		adjacent_kmer_end[i] = false;
 	}
@@ -95,6 +96,15 @@ std::vector<std::string> k_mer::get_adj(){
 
 	}
 	return adj_kmers;
+}
+
+void k_mer::increment_weight(int inc_by){
+	vertex_weight += inc_by; 
+}
+
+const int k_mer::get_weight(){
+	const int ret_weight = vertex_weight;
+	return ret_weight;
 }
 
 std::string k_mer::get_k_mer(){
