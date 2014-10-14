@@ -60,7 +60,7 @@ void kmers::build_A_bruijn_graph(const int ham_dist){
 	//for each k_mer, find all k_mers within hamming distance ham_dist
 	i=0;
 	for(auto it = k_mer_in_process_order.begin(); it != k_mer_in_process_order.end(); ++it){
-		if(i%1000000==0){
+		if(i%100==0){
 			std::cout<<"processing k_mer: "<<i<<std::endl;
 		}
 		++i;
